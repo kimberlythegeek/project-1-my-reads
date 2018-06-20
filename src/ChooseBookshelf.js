@@ -39,9 +39,7 @@ class ChooseBookshelf extends Component {
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>
           <option value="read">Read</option>
-          {/* Disable "none" if on a bookshelf.
-              Currently there is no way to remove books from a bookshelf. */}
-          <option value="none" disabled={this.state.value !== "none"}>None</option>
+          <option value="none">None</option>
         </select>
       </div>
     );

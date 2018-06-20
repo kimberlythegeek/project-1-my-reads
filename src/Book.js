@@ -7,13 +7,16 @@ import ChooseBookshelf from './ChooseBookshelf';
 class Book extends Component {
   render() {
     const { book, shelf, updateBooks } = this.props;
+    const image = (!book.imageLinks) ? '' : book.imageLinks.thumbnail;
+    console.log(book);
     return (
       <li>
         <div className="book">
           <div className="book-top">
+
             <div
               className="book-cover"
-              style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}
+              style={{ width: 128, height: 193, backgroundImage: `url(${image})` }}
               ></div>
             <ChooseBookshelf
               book={book}
@@ -22,7 +25,11 @@ class Book extends Component {
             />
           </div>
           <div className="book-title">{book.title}</div>
-          <div className="book-authors">{book.authors}</div>
+          <div className="book-authors">
+            {book.authors.map(author => (
+              <div>{author}</div>
+            ))}
+          </div>
         </div>
       </li>
     );
