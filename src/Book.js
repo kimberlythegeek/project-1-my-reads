@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ChooseBookshelf from './ChooseBookshelf';
+import placeholder from './icons/placeholder.png';
 
 /**
 * @description Represents a book
@@ -7,7 +8,7 @@ import ChooseBookshelf from './ChooseBookshelf';
 class Book extends Component {
   render() {
     const { book, shelf, updateBooks, books } = this.props;
-    const image = (!book.imageLinks) ? '' : book.imageLinks.thumbnail;
+    const image = (!book.imageLinks) ? placeholder : book.imageLinks.thumbnail;
     return (
       <li>
         <div className="book">

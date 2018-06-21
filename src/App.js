@@ -1,9 +1,10 @@
-import React from 'react'
-import * as BooksAPI from './BooksAPI'
-import './App.css'
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import * as BooksAPI from './BooksAPI';
 import BookshelfPage from './BookshelfPage';
 import SearchPage from './SearchPage';
-import { Route } from 'react-router-dom';
+import PageNotFound from './PageNotFound';
+import './App.css';
 
 // Bookshelf titles and corresponding IDs
 const bookshelves = [
@@ -44,22 +45,26 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        {/* Show Search Page when URL path is [baseURL]/search */}
-        <Route path="/search" render={() => (
-          <SearchPage
-            updateBooks={this.updateBooks}
-            books={this.state.books}
-          />
-        )}/>
-        {/* Show Bookshelf Page when on base URL path */}
-        <Route exact path="/" render={() => (
-          <BookshelfPage
-            bookshelves={bookshelves}
-            books={this.state.books}
-            showSearch={this.showSearch}
-            updateBooks={this.updateBooks}
-          />
-        )} />
+        <Switch>
+          {/* Show Search Page when URL path is [baseURL]/search */}
+          <Route path="/search" render={() => (
+            <SearchPage
+              updateBooks={this.updateBooks}
+              books={this.state.books}
+            />
+          )}/>
+          {/* Show Bookshelf Page when on base URL path */}
+          <Route exact path="/" render={() => (
+            <BookshelfPage
+              bookshelves={bookshelves}
+              books={this.state.books}
+              showSearch={this.showSearch}
+              updateBooks={this.updateBooks}
+            />
+          )} />
+          {/* 404 Catch-All Page */}
+          <Route component={PageNotFound} />
+        </Switch>
       </div>
     )
   }
