@@ -11,7 +11,13 @@ class ChooseBookshelf extends Component {
     // If shelf is defined, set default value to current shelf
     if(props.shelf) {
       this.state = { value: props.shelf };
+    } else {
+      const compare = props.books.filter((book) => {
+        return book.id === props.book.id;
+      });
+      if (compare.length > 0) this.state = {value: compare[0].shelf};
     }
+
   }
 
   state = {
@@ -25,6 +31,9 @@ class ChooseBookshelf extends Component {
     const newValue = event.target.value;
     // Update BooksAPI when a book is moved to a different bookshelf
     BooksAPI.update(this.props.book, newValue)
+      .then(() => (
+        this.setState({value: newValue})
+      ))
       .then(() => {
         // Update parent component to match changes
         this.props.updateBooks();

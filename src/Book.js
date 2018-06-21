@@ -6,9 +6,8 @@ import ChooseBookshelf from './ChooseBookshelf';
 */
 class Book extends Component {
   render() {
-    const { book, shelf, updateBooks } = this.props;
+    const { book, shelf, updateBooks, books } = this.props;
     const image = (!book.imageLinks) ? '' : book.imageLinks.thumbnail;
-    console.log(book);
     return (
       <li>
         <div className="book">
@@ -22,13 +21,16 @@ class Book extends Component {
               book={book}
               shelf={shelf}
               updateBooks={updateBooks}
+              books={books}
             />
           </div>
           <div className="book-title">{book.title}</div>
           <div className="book-authors">
-            {book.authors.map(author => (
-              <div>{author}</div>
-            ))}
+            {book.authors && (
+              book.authors.map(author => (
+                <div key={author}>{author}</div>
+              ))
+            )}
           </div>
         </div>
       </li>

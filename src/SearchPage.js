@@ -19,12 +19,14 @@ class SearchPage extends Component {
   }
 
   render() {
+    const { updateBooks, books } = this.props;
     return (
       <div className="search-books">
         <SearchForm onSearch={this.handleSearch} />
         <SearchResults
           searchResults={this.state.searchResults}
-          updateBooks={this.props.updateBooks}
+          updateBooks={updateBooks}
+          books={books}
         />
       </div>
     );

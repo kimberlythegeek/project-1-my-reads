@@ -46,7 +46,10 @@ class BooksApp extends React.Component {
       <div className="app">
         {/* Show Search Page when URL path is [baseURL]/search */}
         <Route path="/search" render={() => (
-          <SearchPage updateBooks={this.updateBooks} />
+          <SearchPage
+            updateBooks={this.updateBooks}
+            books={this.state.books}
+          />
         )}/>
         {/* Show Bookshelf Page when on base URL path */}
         <Route exact path="/" render={() => (
